@@ -173,7 +173,7 @@ def main():
         pygame.mixer.music.play(-1, 0.0)
         runGame()
         pygame.mixer.music.stop()
-        showTextScreen('Game Over')
+        showTextScreen('Perdiste')
 
 
 def runGame():
