@@ -1,11 +1,7 @@
-<<<<<<< HEAD
 #Autores Ecab & Fanny :D
 # Released under a "Simplified BSD" license
-=======
 # Tetrix
 #Authors: Ecab y Fanny
-
->>>>>>> origin/master
 
 import random, time, pygame, sys
 from pygame.locals import *
@@ -166,9 +162,9 @@ def main():
     DISPLAYSURF = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT))
     BASICFONT = pygame.font.Font('freesansbold.ttf', 18)
     BIGFONT = pygame.font.Font('freesansbold.ttf', 100)
-    pygame.display.set_caption('Tetromino')
+    pygame.display.set_caption('Tetrix')
 
-    showTextScreen('Tetromino')
+    showTextScreen('Tetrix')
     while True: # game loop
         if random.randint(0, 1) == 0:
             pygame.mixer.music.load('tetrisb.mid')
@@ -339,7 +335,7 @@ def showTextScreen(text):
     DISPLAYSURF.blit(titleSurf, titleRect)
 
     # Draw the additional "Press a key to play." text.
-    pressKeySurf, pressKeyRect = makeTextObjs('Press a key to play.', BASICFONT, TEXTCOLOR)
+    pressKeySurf, pressKeyRect = makeTextObjs('Presiona una tecla para jugar', BASICFONT, TEXTCOLOR)
     pressKeyRect.center = (int(WINDOWWIDTH / 2), int(WINDOWHEIGHT / 2) + 100)
     DISPLAYSURF.blit(pressKeySurf, pressKeyRect)
 
@@ -471,13 +467,13 @@ def drawBoard(board):
 
 def drawStatus(score, level):
     # draw the score text
-    scoreSurf = BASICFONT.render('Score: %s' % score, True, TEXTCOLOR)
+    scoreSurf = BASICFONT.render('Puntuacion: %s' % score, True, TEXTCOLOR)
     scoreRect = scoreSurf.get_rect()
     scoreRect.topleft = (WINDOWWIDTH - 150, 20)
     DISPLAYSURF.blit(scoreSurf, scoreRect)
 
     # draw the level text
-    levelSurf = BASICFONT.render('Level: %s' % level, True, TEXTCOLOR)
+    levelSurf = BASICFONT.render('Nivel: %s' % level, True, TEXTCOLOR)
     levelRect = levelSurf.get_rect()
     levelRect.topleft = (WINDOWWIDTH - 150, 50)
     DISPLAYSURF.blit(levelSurf, levelRect)
@@ -498,7 +494,7 @@ def drawPiece(piece, pixelx=None, pixely=None):
 
 def drawNextPiece(piece):
     # draw the "next" text
-    nextSurf = BASICFONT.render('Next:', True, TEXTCOLOR)
+    nextSurf = BASICFONT.render('Siguiente:', True, TEXTCOLOR)
     nextRect = nextSurf.get_rect()
     nextRect.topleft = (WINDOWWIDTH - 120, 80)
     DISPLAYSURF.blit(nextSurf, nextRect)
