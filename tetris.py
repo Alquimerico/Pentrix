@@ -1,6 +1,4 @@
-# Tetromino (a Tetris clone)
-# By Al Sweigart al@inventwithpython.com
-# http://inventwithpython.com/pygame
+#Autores Ecab & Fanny :D
 # Released under a "Simplified BSD" license
 
 import random, time, pygame, sys
