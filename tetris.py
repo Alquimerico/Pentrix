@@ -1,5 +1,11 @@
+<<<<<<< HEAD
 #Autores Ecab & Fanny :D
 # Released under a "Simplified BSD" license
+=======
+# Tetrix
+#Authors: Ecab y Fanny
+
+>>>>>>> origin/master
 
 import random, time, pygame, sys
 from pygame.locals import *
