@@ -3,10 +3,18 @@
 # Tetrix
 #Authors: Ecab y Fanny
 
+#Testing code for android export
+try:
+    import pygame_sdl2
+    pygame_sdl2.import_as_pygame()
+except ImportError:
+    pass
+
+
 import random, time, pygame, sys
 from pygame.locals import *
 
-FPS = 25
+FPS = 60
 WINDOWWIDTH = 640
 WINDOWHEIGHT = 480
 BOXSIZE = 20
