@@ -332,6 +332,7 @@ def main():
 
 def runGame():
     # setup variables for the start of the game
+    BGCOLOR = color()
     board = getBlankBoard()
     lastMoveDownTime = time.time()
     lastMoveSidewaysTime = time.time()
@@ -349,6 +350,8 @@ def runGame():
         if fallingPiece == None:
             # No falling piece in play, so start a new piece at the top
             BGCOLOR=color()
+
+            # En esta parte anadir funcion que modifique el BGCOLOR
             fallingPiece = nextPiece
             nextPiece = getNewPiece()
             lastFallTime = time.time() # reset lastFallTime
