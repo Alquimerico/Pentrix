@@ -51,7 +51,7 @@ assert len(COLORS) == len(LIGHTCOLORS) # each color must have light color
 TEMPLATEWIDTH = 5
 TEMPLATEHEIGHT = 5
 
-S_SHAPE_TEMPLATE = [['.....',
+DEDOIZQUIERDO_SHAPE_TEMPLATE = [['.....',
                      '.....',
                      '..OO.',
                      '.OOO.',
@@ -73,7 +73,8 @@ S_SHAPE_TEMPLATE = [['.....',
                      '...O.']
                     ]
 
-Z_SHAPE_TEMPLATE = [['.....',
+DEDODERECHO_SHAPE_TEMPLATE = \
+                    [['.....',
                      '...O.',
                      '..OO.',
                      '..OO.',
@@ -95,7 +96,8 @@ Z_SHAPE_TEMPLATE = [['.....',
                      '.....']
                     ]
 
-I_SHAPE_TEMPLATE = [['..O..',
+LONGI_SHAPE_TEMPLATE = \
+                    [['..O..',
                      '..O..',
                      '..O..',
                      '..O..',
@@ -106,29 +108,16 @@ I_SHAPE_TEMPLATE = [['..O..',
                      '.....',
                      '.....']]
 
-O_SHAPE_TEMPLATE = [['.....',
-                     'OO.OO',
+FILLSHAPE_SHAPE_TEMPLATE = \
+                    [['.....',
                      '..O..',
-                     '.....',
-                     '.....'],
-                    ['...O.',
-                     '...O.',
+                     '.OOO.',
                      '..O..',
-                     '...O.',
-                     '...O.'],
-                    ['.....',
-                     '.....',
-                     '..O..',
-                     'OO.OO',
-                     '.....'],
-                    ['.O...',
-                     '.O...',
-                     '..O..',
-                     '.O...',
-                     '.O...']
+                     '.....']
                     ]
 
-J_SHAPE_TEMPLATE = [['.....',
+ARCO_SHAPE_TEMPLATE = \
+                    [['.....',
                      '.O.O.',
                      '.OOO.',
                      '.....',
@@ -149,7 +138,8 @@ J_SHAPE_TEMPLATE = [['.....',
                      '.OO..',
                      '.....']]
 
-L_SHAPE_TEMPLATE = [['.....',
+DEDO_DE_ENMEDIO_SHAPE_TEMPLATE = \
+                    [['.....',
                      '...O.',
                      '.OOO.',
                      '...O.',
@@ -170,7 +160,7 @@ L_SHAPE_TEMPLATE = [['.....',
                      '..O..',
                      '.....']]
 
-T_SHAPE_TEMPLATE = [['.....',
+MACANA_SHAPE_TEMPLATE = [['.....',
                      '..O..',
                      '.OOOO',
                      '.....',
@@ -191,13 +181,124 @@ T_SHAPE_TEMPLATE = [['.....',
                      '..O..',
                      '.....']]
 
+
+S_SHAPE_TEMPLATE = [['.....',
+                     '.....',
+                     '..OO.',
+                     '.OO..',
+                     '.....'],
+                    ['.....',
+                     '..O..',
+                     '..OO.',
+                     '...O.',
+                     '.....']]
+
+Z_SHAPE_TEMPLATE = [['.....',
+                     '.....',
+                     '.OO..',
+                     '..OO.',
+                     '.....'],
+                    ['.....',
+                     '..O..',
+                     '.OO..',
+                     '.O...',
+                     '.....']]
+
+I_SHAPE_TEMPLATE = [['..O..',
+                     '..O..',
+                     '..O..',
+                     '..O..',
+                     '.....'],
+                    ['.....',
+                     '.....',
+                     'OOOO.',
+                     '.....',
+                     '.....']]
+
+O_SHAPE_TEMPLATE = [['.....',
+                     '.....',
+                     '.OO..',
+                     '.OO..',
+                     '.....']]
+
+J_SHAPE_TEMPLATE = [['.....',
+                     '.O...',
+                     '.OOO.',
+                     '.....',
+                     '.....'],
+                    ['.....',
+                     '..OO.',
+                     '..O..',
+                     '..O..',
+                     '.....'],
+                    ['.....',
+                     '.....',
+                     '.OOO.',
+                     '...O.',
+                     '.....'],
+                    ['.....',
+                     '..O..',
+                     '..O..',
+                     '.OO..',
+                     '.....']]
+
+L_SHAPE_TEMPLATE = [['.....',
+                     '...O.',
+                     '.OOO.',
+                     '.....',
+                     '.....'],
+                    ['.....',
+                     '..O..',
+                     '..O..',
+                     '..OO.',
+                     '.....'],
+                    ['.....',
+                     '.....',
+                     '.OOO.',
+                     '.O...',
+                     '.....'],
+                    ['.....',
+                     '.OO..',
+                     '..O..',
+                     '..O..',
+                     '.....']]
+
+T_SHAPE_TEMPLATE = [['.....',
+                     '..O..',
+                     '.OOO.',
+                     '.....',
+                     '.....'],
+                    ['.....',
+                     '..O..',
+                     '..OO.',
+                     '..O..',
+                     '.....'],
+                    ['.....',
+                     '.....',
+                     '.OOO.',
+                     '..O..',
+                     '.....'],
+                    ['.....',
+                     '..O..',
+                     '.OO..',
+                     '..O..',
+                     '.....']]
+
 PIECES = {'S': S_SHAPE_TEMPLATE,
           'Z': Z_SHAPE_TEMPLATE,
           'J': J_SHAPE_TEMPLATE,
           'L': L_SHAPE_TEMPLATE,
           'I': I_SHAPE_TEMPLATE,
           'O': O_SHAPE_TEMPLATE,
-          'T': T_SHAPE_TEMPLATE}
+          'T': T_SHAPE_TEMPLATE,
+          'DI': DEDOIZQUIERDO_SHAPE_TEMPLATE,
+          'DD': DEDODERECHO_SHAPE_TEMPLATE,
+          'LI': LONGI_SHAPE_TEMPLATE,
+          'FI': FILLSHAPE_SHAPE_TEMPLATE,
+          'AR': ARCO_SHAPE_TEMPLATE,
+          'DE': DEDO_DE_ENMEDIO_SHAPE_TEMPLATE,
+          'MA': MACANA_SHAPE_TEMPLATE
+          }
 
 
 def main():
