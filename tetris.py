@@ -1,9 +1,8 @@
 #Autores Ecab & Fanny :D
-# Released under a "Simplified BSD" license
 # Tetrix
-#Authors: Ecab y Fanny
 
 import random, time, pygame, sys
+from random import randint
 from pygame.locals import *
 
 FPS = 25
@@ -20,6 +19,8 @@ MOVEDOWNFREQ = 0.1
 XMARGIN = int((WINDOWWIDTH - BOARDWIDTH * BOXSIZE) / 2)
 TOPMARGIN = WINDOWHEIGHT - (BOARDHEIGHT * BOXSIZE) - 5
 
+
+
 #               R    G    B
 WHITE       = (255, 255, 255)
 GRAY        = (185, 185, 185)
@@ -32,9 +33,16 @@ BLUE        = (  0,   0, 155)
 LIGHTBLUE   = ( 20,  20, 175)
 YELLOW      = (155, 155,   0)
 LIGHTYELLOW = (175, 175,  20)
+PINK        = (154,  82,  88)
+
+def color():
+    colors=[WHITE, GRAY, BLACK, RED, LIGHTRED, GREEN,LIGHTGREEN,BLUE,LIGHTBLUE,YELLOW,LIGHTYELLOW,PINK]
+    BGCOLOR = random.choice(colors)
+    return BGCOLOR
+
+BGCOLOR=color()
 
 BORDERCOLOR = BLUE
-BGCOLOR = BLACK
 TEXTCOLOR = WHITE
 TEXTSHADOWCOLOR = GRAY
 COLORS      = (     BLUE,      GREEN,      RED,      YELLOW)
@@ -194,6 +202,7 @@ def runGame():
     while True: # game loop
         if fallingPiece == None:
             # No falling piece in play, so start a new piece at the top
+            BGCOLOR=color()
             fallingPiece = nextPiece
             nextPiece = getNewPiece()
             lastFallTime = time.time() # reset lastFallTime
