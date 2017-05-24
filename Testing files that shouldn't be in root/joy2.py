@@ -3,21 +3,22 @@ pygame.init()
 #pygame.joystick.get_count()
 print(pygame.joystick.get_init())
 print(pygame.joystick.get_count())
-j1 = pygame.joystick.Joystick(1)
+j1 = pygame.joystick.Joystick(0)
 #print(type(j1))
 j1.init()
 
 print(j1.get_numbuttons())
 while True:
-    for x in range(j1.get_numbuttons()):
-        if j1.get_button(x) == 0:
-            print("FALSO FALSO FALSO")
-        if j1.get_button(x) == 1:
-            print("kadjlasjdlasjdlasjdklasjdajdlaskjdklasjdlask")
+    # for x in range(j1.get_numbuttons()):
+    #     if j1.get_button(x) == 0:
+    #         print("FALSO FALSO FALSO")
+    #     if j1.get_button(x) == 1:
+    #         print("kadjlasjdlasjdlasjdklasjdajdlaskjdklasjdlask")
     for event in pygame.event.get(): # User did something
+        print(j1.get_hat(0))
         if event.type == pygame.QUIT: # If user clicked close
             done=True # Flag that we are done so we exit this loop
-        
+
         # Possible joystick actions: JOYAXISMOTION JOYBALLMOTION JOYBUTTONDOWN JOYBUTTONUP JOYHATMOTION
         if event.type == pygame.JOYBUTTONDOWN:
             print("Joystick button pressed.")

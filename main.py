@@ -15,7 +15,7 @@ pygame.init()
 
     #Code used to init the joystick
     #Commit joystick?
-j1 = pygame.joystick.Joystick(1)
+j1 = pygame.joystick.Joystick(0)
 j1.init()
     
 
@@ -392,8 +392,23 @@ def runGame():
                         '''
 
         for event in pygame.event.get(): # event handling loop
+            #Derecha
+            if j1.get_hat(0)[0] == 1 and isValidPosition(board, fallingPiece, adjX=1):
+                fallingPiece['x'] += 1
+                movingRight = True
+                movingLeft = False
+                lastMoveSidewaysTime = time.time()
+            if j1.get_hat(0)[0] == 0:
+                movingRight = False
+                movingLeft = False
+            #Izquierda
+            if j1.get_hat(0)[0] == -1 and isValidPosition(board, fallingPiece, adjX=-1):
+                fallingPiece['x'] -= 1
+                movingLeft = True
+                movingRight = False
+                lastMoveSidewaysTime = time.time()
 
-            #TODO: Añadir acciones para el hat del control
+            #TODO: Terminar eventos de botones pausa, rotación inversa y down
             if event.type == pygame.JOYBUTTONDOWN:
                 #El boton 2 equivale a X en xinput -> Rota la pieza
                 if j1.get_button(2) == 1: 
