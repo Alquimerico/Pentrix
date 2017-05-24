@@ -12,8 +12,8 @@ from random import randint
 from pygame.locals import *
 
 FPS = 25
-WINDOWWIDTH = 640
-WINDOWHEIGHT = 480
+WINDOWWIDTH = 720
+WINDOWHEIGHT = 550
 BOXSIZE = 20
 BOARDWIDTH = 15
 BOARDHEIGHT = 20
@@ -29,27 +29,30 @@ TOPMARGIN = WINDOWHEIGHT - (BOARDHEIGHT * BOXSIZE) - 5
 
 #               R    G    B
 WHITE       = (255, 255, 255)
-GRAY        = (185, 185, 185)
+GRAY        = (247, 232, 232)
 BLACK       = (  0,   0,   0)
-RED         = (155,   0,   0)
+RED         = (232,  45,  54)
 LIGHTRED    = (175,  20,  20)
-GREEN       = (  0, 155,   0)
-LIGHTGREEN  = ( 20, 175,  20)
-BLUE        = (  0,   0, 155)
-LIGHTBLUE   = ( 20,  20, 175)
-YELLOW      = (155, 155,   0)
+GREEN       = (  0, 150, 136)
+LIGHTGREEN  = (  1, 255, 134)
+BLUE        = ( 40,  86, 182)
+LIGHTBLUE   = ( 79, 181, 203)
+YELLOW      = (234, 199,  97)
 LIGHTYELLOW = (175, 175,  20)
 PINK        = (154,  82,  88)
+PURPLE      = ( 61,  48,  83)
+ORANGE      = (255,  49,  83)
+BORDER      = (112, 160, 136)
 
 def color():
-    colors=[WHITE, GRAY, BLACK, RED, LIGHTRED, GREEN,LIGHTGREEN,BLUE,LIGHTBLUE,YELLOW,LIGHTYELLOW,PINK]
+    colors=[WHITE, GRAY, BLACK, RED, LIGHTRED, GREEN,LIGHTGREEN,BLUE,LIGHTBLUE,YELLOW,LIGHTYELLOW,PINK,PURPLE]
     BGCOLOR = random.choice(colors)
     return BGCOLOR
 
 BGCOLOR=color()
 
-BORDERCOLOR = RED
-BGCOLOR = WHITE
+BORDERCOLOR = BORDER
+BGCOLOR = GRAY
 TEXTCOLOR = BLACK
 TEXTSHADOWCOLOR = GRAY
 COLORS      = (     BLUE,      GREEN,      RED,      YELLOW)
@@ -314,11 +317,11 @@ def main():
     pygame.init()
     FPSCLOCK = pygame.time.Clock()
     DISPLAYSURF = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT))
-    BASICFONT = pygame.font.Font('freesansbold.ttf', 18)
-    BIGFONT = pygame.font.Font('freesansbold.ttf', 100)
-    pygame.display.set_caption('Tetrix')
+    BASICFONT = pygame.font.Font('hetero.ttf', 20)
+    BIGFONT = pygame.font.Font('pepperoni_pizza.ttf', 100)
+    pygame.display.set_caption('Pentrix')
 
-    showTextScreen('Tetrix')
+    showTextScreen('Pentrix')
     while True: # game loop
         if random.randint(0, 1) == 0:
             pygame.mixer.music.load('tetrisb.mid')
@@ -366,7 +369,7 @@ def runGame():
                     # Pausing the game
                     DISPLAYSURF.fill(BGCOLOR)
                     pygame.mixer.music.stop()
-                    showTextScreen('Paused') # pause until a key press
+                    showTextScreen('Pausa :D') # pause until a key press
                     pygame.mixer.music.play(-1, 0.0)
                     lastFallTime = time.time()
                     lastMoveDownTime = time.time()
@@ -493,7 +496,7 @@ def showTextScreen(text):
     DISPLAYSURF.blit(titleSurf, titleRect)
 
     # Draw the additional "Press a key to play." text.
-    pressKeySurf, pressKeyRect = makeTextObjs('Presiona una tecla para jugar', BASICFONT, TEXTCOLOR)
+    pressKeySurf, pressKeyRect = makeTextObjs('Presiona una tecla para jugar >:D', BASICFONT, TEXTCOLOR)
     pressKeyRect.center = (int(WINDOWWIDTH / 2), int(WINDOWHEIGHT / 2) + 100)
     DISPLAYSURF.blit(pressKeySurf, pressKeyRect)
 
@@ -627,13 +630,13 @@ def drawStatus(score, level):
     # draw the score text
     scoreSurf = BASICFONT.render('Puntuacion: %s' % score, True, TEXTCOLOR)
     scoreRect = scoreSurf.get_rect()
-    scoreRect.topleft = (WINDOWWIDTH - 150, 20)
+    scoreRect.topleft = (WINDOWWIDTH - 230, 20)
     DISPLAYSURF.blit(scoreSurf, scoreRect)
 
     # draw the level text
     levelSurf = BASICFONT.render('Nivel: %s' % level, True, TEXTCOLOR)
     levelRect = levelSurf.get_rect()
-    levelRect.topleft = (WINDOWWIDTH - 150, 50)
+    levelRect.topleft = (WINDOWWIDTH - 230, 50)
     DISPLAYSURF.blit(levelSurf, levelRect)
 
 
@@ -654,7 +657,7 @@ def drawNextPiece(piece):
     # draw the "next" text
     nextSurf = BASICFONT.render('Siguiente:', True, TEXTCOLOR)
     nextRect = nextSurf.get_rect()
-    nextRect.topleft = (WINDOWWIDTH - 120, 80)
+    nextRect.topleft = (WINDOWWIDTH - 200, 80)
     DISPLAYSURF.blit(nextSurf, nextRect)
     # draw the "next" piece
     drawPiece(piece, pixelx=WINDOWWIDTH-120, pixely=100)
