@@ -13,6 +13,14 @@ import py2exe
 from random import randint
 from pygame.locals import *
 
+pygame.init()
+
+    #Code used to init the joystick
+    #Commit joystick?
+j1 = pygame.joystick.Joystick(0)
+j1.init()
+    
+
 FPS = 25
 WINDOWWIDTH = 720
 WINDOWHEIGHT = 550
@@ -318,8 +326,11 @@ PIECES = {'S': S_SHAPE_TEMPLATE,
 
 def main():
     global FPSCLOCK, DISPLAYSURF, BASICFONT, ALERTFONT, BIGFONT
-    pygame.init()
     FPSCLOCK = pygame.time.Clock()
+    
+    #print(pygame.joystick.get_init())
+    #print(pygame.joystick.get_count())
+
     DISPLAYSURF = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT))
     ALERTFONT = pygame.font.Font('freesansbold.ttf', 20)
     BASICFONT = pygame.font.Font('hetero.ttf', 20)
@@ -340,7 +351,6 @@ def main():
 
 def runGame():
     # setup variables for the start of the game
-    BGCOLOR = color()
     board = getBlankBoard()
     lastMoveDownTime = time.time()
     lastMoveSidewaysTime = time.time()
@@ -357,9 +367,7 @@ def runGame():
     while True: # game loop
         if fallingPiece == None:
             # No falling piece in play, so start a new piece at the top
-            BGCOLOR=color()
 
-            # En esta parte anadir funcion que modifique el BGCOLOR
             fallingPiece = nextPiece
             nextPiece = getNewPiece()
             lastFallTime = time.time() # reset lastFallTime
@@ -368,7 +376,59 @@ def runGame():
                 return # can't fit a new piece on the board, so game over
 
         checkForQuit()
+        '''
+        for x in range(j1.get_numbuttons()):
+            if event.type == pygame.JOYBUTTONUP:
+                if j1.get_button(0) == 1:
+                    movingDown = False
+                    movingLeft = False
+                    movingRight = False
+                    for i in range(1, BOARDHEIGHT):
+                        if not isValidPosition(board, fallingPiece, adjY=i):
+                             break
+                    fallingPiece['y'] += i - 1
+
+            if event.type == pygame.JOYBUTTONDOWN:
+                if j1.get_button(2) == 1:
+                    fallingPiece['rotation'] = (fallingPiece['rotation'] + 1) % len(PIECES[fallingPiece['shape']])
+                    if not isValidPosition(board, fallingPiece):
+                        fallingPiece['rotation'] = (fallingPiece['rotation'] - 1) % len(PIECES[fallingPiece['shape']])
+                        '''
+
         for event in pygame.event.get(): # event handling loop
+            #Derecha
+            if j1.get_hat(0)[0] == 1 and isValidPosition(board, fallingPiece, adjX=1):
+                fallingPiece['x'] += 1
+                movingRight = True
+                movingLeft = False
+                lastMoveSidewaysTime = time.time()
+            if j1.get_hat(0)[0] == 0:
+                movingRight = False
+                movingLeft = False
+            #Izquierda
+            if j1.get_hat(0)[0] == -1 and isValidPosition(board, fallingPiece, adjX=-1):
+                fallingPiece['x'] -= 1
+                movingLeft = True
+                movingRight = False
+                lastMoveSidewaysTime = time.time()
+
+            #TODO: Terminar eventos de botones pausa, rotación inversa y down
+            if event.type == pygame.JOYBUTTONDOWN:
+                #El boton 2 equivale a X en xinput -> Rota la pieza
+                if j1.get_button(2) == 1: 
+                    fallingPiece['rotation'] = (fallingPiece['rotation'] + 1) % len(PIECES[fallingPiece['shape']])
+                    if not isValidPosition(board, fallingPiece):
+                        fallingPiece['rotation'] = (fallingPiece['rotation'] - 1) % len(PIECES[fallingPiece['shape']])
+                #El boton 1 equivale a A en xinput -> Suela fuerte la pieza 
+                if j1.get_button(0) == 1:
+                    movingDown = False
+                    movingLeft = False
+                    movingRight = False
+                    for i in range(1, BOARDHEIGHT):
+                        if not isValidPosition(board, fallingPiece, adjY=i):
+                             break
+                    fallingPiece['y'] += i - 1
+            
             if event.type == KEYUP:
                 if (event.key == K_p):
                     # Pausing the game
@@ -418,6 +478,7 @@ def runGame():
                     lastMoveDownTime = time.time()
 
                 # move the current piece all the way down
+                #Modified with get_button to support joystick
                 elif event.key == K_SPACE:
                     movingDown = False
                     movingLeft = False
