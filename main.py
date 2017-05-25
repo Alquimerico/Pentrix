@@ -8,8 +8,13 @@ except ImportError:
     pass
 
 import random, time, pygame, sys
-from distutils.core import setup
-import py2exe
+#Esto es usado para crear el binario, no?
+try:
+    from distutils.core import setup
+    import py2exe
+except ImportError:
+    pass
+
 from random import randint
 from pygame.locals import *
 
@@ -17,9 +22,13 @@ pygame.init()
 
     #Code used to init the joystick
     #Commit joystick?
-j1 = pygame.joystick.Joystick(0)
-j1.init()
-    
+
+try:
+    j1 = pygame.joystick.Joystick(0)
+    j1.init()
+    joystickConnected = True
+except:
+    joystickConnected = False
 
 FPS = 25
 WINDOWWIDTH = 720
@@ -397,37 +406,60 @@ def runGame():
 
         for event in pygame.event.get(): # event handling loop
             #Derecha
-            if j1.get_hat(0)[0] == 1 and isValidPosition(board, fallingPiece, adjX=1):
-                fallingPiece['x'] += 1
-                movingRight = True
-                movingLeft = False
-                lastMoveSidewaysTime = time.time()
-            if j1.get_hat(0)[0] == 0:
-                movingRight = False
-                movingLeft = False
-            #Izquierda
-            if j1.get_hat(0)[0] == -1 and isValidPosition(board, fallingPiece, adjX=-1):
-                fallingPiece['x'] -= 1
-                movingLeft = True
-                movingRight = False
-                lastMoveSidewaysTime = time.time()
+            if joystickConnected:
+                if j1.get_hat(0)[0] == 1 and isValidPosition(board, fallingPiece, adjX=1):
+                    fallingPiece['x'] += 1
+                    movingRight = True
+                    movingLeft = False
+                    lastMoveSidewaysTime = time.time()
+                if j1.get_hat(0)[0] == 0:
+                    movingRight = False
+                    movingLeft = False
+
+                #Izquierda
+                if j1.get_hat(0)[0] == -1 and isValidPosition(board, fallingPiece, adjX=-1):
+                    fallingPiece['x'] -= 1
+                    movingLeft = True
+                    movingRight = False
+                    lastMoveSidewaysTime = time.time()
+                #Abajo, acelerar caida
+                if j1.get_hat(0)[1] == -1:
+                    movingDown = True
+                    if isValidPosition(board, fallingPiece, adjY=1):
+                        fallingPiece['y'] += 1
+                    lastMoveDownTime = time.time()
+                if j1.get_hat(0)[1] == 0:
+                    movingDown = False
+
 
             #TODO: Terminar eventos de botones pausa, rotación inversa y down
             if event.type == pygame.JOYBUTTONDOWN:
                 #El boton 2 equivale a X en xinput -> Rota la pieza
-                if j1.get_button(2) == 1: 
-                    fallingPiece['rotation'] = (fallingPiece['rotation'] + 1) % len(PIECES[fallingPiece['shape']])
-                    if not isValidPosition(board, fallingPiece):
-                        fallingPiece['rotation'] = (fallingPiece['rotation'] - 1) % len(PIECES[fallingPiece['shape']])
-                #El boton 1 equivale a A en xinput -> Suela fuerte la pieza 
-                if j1.get_button(0) == 1:
-                    movingDown = False
-                    movingLeft = False
-                    movingRight = False
-                    for i in range(1, BOARDHEIGHT):
-                        if not isValidPosition(board, fallingPiece, adjY=i):
-                             break
-                    fallingPiece['y'] += i - 1
+                if joystickConnected:
+                    if j1.get_button(2) == 1:
+                        fallingPiece['rotation'] = (fallingPiece['rotation'] + 1) % len(PIECES[fallingPiece['shape']])
+                        if not isValidPosition(board, fallingPiece):
+                            fallingPiece['rotation'] = (fallingPiece['rotation'] - 1) % len(PIECES[fallingPiece['shape']])
+                    #El boton 1 equivale a A en xinput -> Suela fuerte la pieza
+                    if j1.get_button(0) == 1:
+                        movingDown = False
+                        movingLeft = False
+                        movingRight = False
+                        for i in range(1, BOARDHEIGHT):
+                            if not isValidPosition(board, fallingPiece, adjY=i):
+                                 break
+                        fallingPiece['y'] += i - 1
+
+                    #TODO: This isn't correctly bind to the start button in xinput protocol
+                    #TODO Correct this when F710 is avaliable
+                    if j1.get_button(9) == 1:
+                        DISPLAYSURF.fill(BGCOLOR)
+                        pygame.mixer.music.stop()
+                        showTextScreen('Pausa :D')  # pause until a key press
+                        pygame.mixer.music.play(-1, 0.0)
+                        lastFallTime = time.time()
+                        lastMoveDownTime = time.time()
+                        lastMoveSidewaysTime = time.time()
             
             if event.type == KEYUP:
                 if (event.key == K_p):
@@ -536,15 +568,19 @@ def terminate():
     sys.exit()
 
 
+
 def checkForKeyPress():
     # Go through event queue looking for a KEYUP event.
     # Grab KEYDOWN events to remove them from the event queue.
     checkForQuit()
 
-    for event in pygame.event.get([KEYDOWN, KEYUP]):
-        if event.type == KEYDOWN:
+    #TODO FIX THE FUCKING PAUSE JOYSTICK BUTTON, ISN'T WORKING CORRECTLY
+    for event in pygame.event.get([KEYDOWN, KEYUP,JOYBUTTONDOWN,JOYBUTTONUP]):
+        #Check any
+        if event.type == KEYDOWN or event.type == JOYBUTTONDOWN:
             continue
-        return event.key
+        return K_SPACE
+        # event.key
     return None
 
 
