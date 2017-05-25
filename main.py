@@ -8,6 +8,8 @@ except ImportError:
     pass
 
 import random, time, pygame, sys
+from distutils.core import setup
+import py2exe
 from random import randint
 from pygame.locals import *
 
@@ -50,6 +52,8 @@ def color():
     return BGCOLOR
 
 BGCOLOR=color()
+
+
 
 BORDERCOLOR = BORDER
 BGCOLOR = GRAY
@@ -617,7 +621,7 @@ def drawBox(boxx, boxy, color, pixelx=None, pixely=None):
 
 def drawBoard(board):
     # draw the border around the board
-    pygame.draw.rect(DISPLAYSURF, BORDERCOLOR, (XMARGIN - 3, TOPMARGIN - 7, (BOARDWIDTH * BOXSIZE) + 8, (BOARDHEIGHT * BOXSIZE) + 8), 5)
+    pygame.draw.rect(DISPLAYSURF, BGCOLOR, (XMARGIN - 3, TOPMARGIN - 7, (BOARDWIDTH * BOXSIZE) + 8, (BOARDHEIGHT * BOXSIZE) + 8), 5)
 
     # fill the background of the board
     pygame.draw.rect(DISPLAYSURF, BGCOLOR, (XMARGIN, TOPMARGIN, BOXSIZE * BOARDWIDTH, BOXSIZE * BOARDHEIGHT))
