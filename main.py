@@ -212,6 +212,53 @@ MACANA_SHAPE_TEMPLATE = [['.....',
                      '.OO..',
                      '..O..',
                      '.....']]
+MACANA2_SHAPE_TEMPLATE = [['.....',
+                     '...O.',
+                     '.OOOO',
+                     '.....',
+                     '.....'],
+                    ['.....',
+                     '..O..',
+                     '..O..',
+                     '..OO.',
+                     '..O..'],
+                    ['.....',
+                     '.....',
+                     'OOOO.',
+                     '.O...',
+                     '.....'],
+                    ['..O..',
+                     '.OO..',
+                     '..O..',
+                     '..O..',
+                     '.....']]
+
+#['.....',
+# '.....',
+# '.....',
+# '.....',
+# '.....']
+
+LONGL_SHAPE_TEMPLATE = [['.....',
+                     '.....',
+                     '..OOO',
+                     '....O',
+                     '....O'],
+                      ['.....',
+                       '...O.',
+                       '...O.',
+                       '.OOO.',
+                       '.....'],
+                    ['.....',
+                     '.O...',
+                     '.O...',
+                     '.OOO.',
+                     '.....'],
+                    ['.....',
+                     '.OOO.',
+                     '.O...',
+                     '.O...',
+                     '.....']]
 
 
 S_SHAPE_TEMPLATE = [['.....',
@@ -316,20 +363,61 @@ T_SHAPE_TEMPLATE = [['.....',
                      '..O..',
                      '.....']]
 
-PIECES = {'S': S_SHAPE_TEMPLATE,
+LMINI_SHAPE_TEMPLATE = [['.....',
+                     '..O..',
+                     '..OO.',
+                     '.....',
+                     '.....'],
+                    ['.....',
+                     '.....',
+                     '..OO.',
+                     '..O..',
+                     '.....'],
+                    ['.....',
+                     '.....',
+                     '..OO.',
+                     '...O.',
+                     '.....'],
+                    ['.....',
+                     '..O..',
+                     '.OO..',
+                     '.....',
+                     '.....']]
+IMINI_SHAPE_TEMPLATE = [['.....',
+                     '..O..',
+                     '..O..',
+                     '..O..',
+                     '.....'],
+                    ['.....',
+                     '.....',
+                     '.OOO.',
+                     '.....',
+                     '.....']]
+
+
+
+PIECES = {
+    #Tetraminos
+        'S': S_SHAPE_TEMPLATE,
           'Z': Z_SHAPE_TEMPLATE,
           'J': J_SHAPE_TEMPLATE,
           'L': L_SHAPE_TEMPLATE,
           'I': I_SHAPE_TEMPLATE,
           'O': O_SHAPE_TEMPLATE,
           'T': T_SHAPE_TEMPLATE,
+          #Pentaminos
           'DI': DEDOIZQUIERDO_SHAPE_TEMPLATE,
           'DD': DEDODERECHO_SHAPE_TEMPLATE,
           'LI': LONGI_SHAPE_TEMPLATE,
           'FI': FILLSHAPE_SHAPE_TEMPLATE,
           'AR': ARCO_SHAPE_TEMPLATE,
           'DE': DEDO_DE_ENMEDIO_SHAPE_TEMPLATE,
-          'MA': MACANA_SHAPE_TEMPLATE
+          'MA': MACANA_SHAPE_TEMPLATE,
+          'M2': MACANA2_SHAPE_TEMPLATE,
+          'LL': LONGL_SHAPE_TEMPLATE,
+          #Triminos
+          'LM': LMINI_SHAPE_TEMPLATE,
+          'IM': IMINI_SHAPE_TEMPLATE
           }
 
 
