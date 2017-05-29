@@ -70,9 +70,8 @@ def color():
 
 BGCOLOR=color()
 
-
-
 BORDERCOLOR = YELLOW
+
 TEXTCOLOR = BLACK
 TEXTSHADOWCOLOR = GRAY
 COLORS      = (     BLUE,      GREEN,      RED,      YELLOW)
@@ -232,11 +231,6 @@ MACANA2_SHAPE_TEMPLATE = [['.....',
                      '..O..',
                      '.....']]
 
-#['.....',
-# '.....',
-# '.....',
-# '.....',
-# '.....']
 
 LONGL_SHAPE_TEMPLATE = [['.....',
                      '.....',
@@ -437,9 +431,9 @@ def main():
     showTextScreen('Pentrix')
     while True: # game loop
         if random.randint(0, 1) == 0:
-            pygame.mixer.music.load('tetrisb.mid')
+            pygame.mixer.music.load("Video_Game_Themes_-_Crash_Bandicoot_Warped.mid")
         else:
-            pygame.mixer.music.load('tetrisc.mid')
+            pygame.mixer.music.load("djwill96_-_Day_'n'_Nite_v2.mid")
         pygame.mixer.music.play(-1, 0.0)
         runGame()
         pygame.mixer.music.stop()
