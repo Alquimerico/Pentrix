@@ -72,8 +72,7 @@ BGCOLOR=color()
 
 
 
-BORDERCOLOR = BORDER
-BGCOLOR = GRAY
+BORDERCOLOR = YELLOW
 TEXTCOLOR = BLACK
 TEXTSHADOWCOLOR = GRAY
 COLORS      = (     BLUE,      GREEN,      RED,      YELLOW)
@@ -433,6 +432,7 @@ def main():
     BASICFONT = pygame.font.Font('hetero.ttf', 20)
     BIGFONT = pygame.font.Font('pepperoni_pizza.ttf', 100)
     pygame.display.set_caption('Pentrix')
+    BGCOLOR=color()
 
     showTextScreen('Pentrix')
     while True: # game loop
@@ -448,6 +448,7 @@ def main():
 
 def runGame():
     # setup variables for the start of the game
+    BGCOLOR=color()
     board = getBlankBoard()
     lastMoveDownTime = time.time()
     lastMoveSidewaysTime = time.time()
@@ -464,7 +465,7 @@ def runGame():
     while True: # game loop
         if fallingPiece == None:
             # No falling piece in play, so start a new piece at the top
-
+            BGCOLOR=color()
             fallingPiece = nextPiece
             nextPiece = getNewPiece()
             lastFallTime = time.time() # reset lastFallTime
