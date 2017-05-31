@@ -1,5 +1,17 @@
-#Autores Ecab & Fanny :D
-# Tetrix
+# Partial code based on:
+# Tetromino (a Tetris clone)
+# By Al Sweigart al@inventwithpython.com
+# http://inventwithpython.com/pygame
+# Creative Commons BY-NC-SA 3.0 US
+
+# Pentrix
+# Adapted by Ecab & Fanny :D
+# Repo avaliable at Github
+# https://github.com/Alquimerico/Tetrix
+# Please fork us :3
+
+
+## Agradecimientos a wagakimi, por ser wagakimi ##
 
 try:
     import pygame_sdl2
@@ -15,7 +27,7 @@ try:
 except ImportError:
     pass
 
-from random import randint
+
 from pygame.locals import *
 
 pygame.init()
@@ -515,7 +527,7 @@ def runGame():
                     movingDown = False
 
 
-            #TODO: Terminar eventos de botones pausa, rotación inversa y down
+            #TODO: Terminar eventos de botones pausa, rotacion inversa y down
             if event.type == pygame.JOYBUTTONDOWN:
                 #El boton 2 equivale a X en xinput -> Rota la pieza
                 if joystickConnected:
